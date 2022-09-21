@@ -121,7 +121,6 @@ class Nacionalidad(models.Model):
 
 
 
-#------------------------------------------------------------
 
 
 
@@ -165,5 +164,18 @@ class Unidadvecinal(models.Model):
         db_table = 'unidadvecinal'
 
 
+#------------------------------------------------------------
 
-        
+
+
+
+
+class Departamento(models.Model):
+    departamento = models.CharField(max_length=100)
+    id_direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.departamento
+
+    class Meta:
+        db_table = 'departamento'
