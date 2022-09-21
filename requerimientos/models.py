@@ -176,19 +176,6 @@ class Departamento(models.Model):
         db_table = 'departamento'
 
 
-#------------------------------------------------------------
-
-
-#  Falta Modelo Usuario
-""" class Telefono(models.Model):
-    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
-    telefono1 = models.IntegerField()
-
-    def __str__(self):  
-        return self.telefono1
-
-    class Meta:
-        db_table = 'telefono' """
 
 
 
@@ -203,3 +190,49 @@ class Origen(models.Model):
 
     class Meta:
         db_table = 'origen'
+
+
+#------------------------------------------------------------
+
+
+class Telefono(models.Model):
+    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    telefono1 = models.IntegerField()
+
+    def __str__(self):  
+        return self.telefono1
+
+    class Meta:
+        db_table = 'telefono'
+
+
+
+
+
+
+class Usuario(models.Model):
+    rut = models.IntegerField()
+    digito_verif = models.CharField(max_length=2)
+    primer_nombre = models.CharField(max_length=100)
+    segundo_nombre = models.CharField(max_length=100)
+    apellido_pat = models.CharField(max_length=100)
+    apellido_mat = models.CharField(max_length=100)
+    fecha_nacimiento = models.DateField()
+    id_genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
+    id_estado_civil = models.ForeignKey(Estadocivil, on_delete=models.CASCADE)
+    id_nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE)
+    correo = models.EmailField()
+
+    def __str__(self):
+        return self.rut+"-"+self.digito_verif
+
+    class Meta:
+        db_table = 'usuario'
+        verbose_name_plural = "Usuarios"
+        verbose_name = "Usuario"
+        ordering = ['rut']
+
+
+
+
+
