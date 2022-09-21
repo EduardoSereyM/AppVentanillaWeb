@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
@@ -192,9 +193,6 @@ class Origen(models.Model):
         db_table = 'origen'
 
 
-#------------------------------------------------------------
-
-
 class Telefono(models.Model):
     id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     telefono1 = models.IntegerField()
@@ -204,10 +202,6 @@ class Telefono(models.Model):
 
     class Meta:
         db_table = 'telefono'
-
-
-
-
 
 
 class Usuario(models.Model):
@@ -231,6 +225,50 @@ class Usuario(models.Model):
         verbose_name_plural = "Usuarios"
         verbose_name = "Usuario"
         ordering = ['rut']
+
+
+
+
+#------------------------------------------------------------
+
+
+
+class Incidente(models.Model):
+    lista_calles_id = models.ForeignKey(Listacalles, on_delete=models.CASCADE)
+    frente_numero = models.IntegerField()
+    block_casa_dpto = models.CharField(max_length=6)
+  
+
+    class Meta:
+        db_table = 'incidente'
+        verbose_name_plural = "Incidentes"
+        verbose_name = "Incidente"
+        ordering = [id]
+
+
+
+
+
+
+
+
+class Imagenincidentes(models.Model):
+    incidente_id = models.ForeignKey('Incidente', on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='incidentes')
+    descripcion_fotografia = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.descripcion_fotografia
+ 
+    class Meta:
+        db_table = 'imagenincidentes'
+        verbose_name_plural = "Imagenes Incidentes"
+        verbose_name = "Imagen Incidente"
+        ordering = ['incidente_id']
+
+
+
+
 
 
 
