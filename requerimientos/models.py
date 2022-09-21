@@ -1,5 +1,4 @@
-from re import M
-from tabnanny import verbose
+
 from django.db import models
 
 # Create your models here.
@@ -16,8 +15,6 @@ class Agrupacion(models.Model):
         verbose_name_plural = "Agrupaciones"
         verbose_name = "Agrupacion"
         ordering = ['agrupacion']
-
-
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=200)
@@ -40,7 +37,6 @@ class Detalleagrupacion(models.Model):
     class Meta:
         db_table = 'detalleagrupacion'
 
-
 class Detallecategoria(models.Model):
     detalle = models.CharField(max_length=150)
 
@@ -49,7 +45,6 @@ class Detallecategoria(models.Model):
 
     class Meta:
         db_table = 'detallecategoria'
-
 
 class Direccion(models.Model):
     direccion = models.CharField(max_length=100)
@@ -60,7 +55,6 @@ class Direccion(models.Model):
     class Meta:
         db_table = 'direccion'
 
-
 class Estado(models.Model):
     estado = models.CharField(max_length=100)
 
@@ -69,7 +63,6 @@ class Estado(models.Model):
 
     class Meta:
         db_table = 'estado'
-
 
 class Estadocivil(models.Model):
     estado_civil = models.CharField(max_length=100)
@@ -80,7 +73,6 @@ class Estadocivil(models.Model):
     class Meta:
         db_table = 'estadocivil'
 
-
 class Genero(models.Model):
     genero = models.CharField(max_length=100)
 
@@ -89,8 +81,6 @@ class Genero(models.Model):
 
     class Meta:
         db_table = 'genero'
-
-
 
 class Listacalles(models.Model):
     calle = models.CharField(max_length=200)
@@ -101,7 +91,6 @@ class Listacalles(models.Model):
     class Meta:
         db_table = 'listacalles'
 
-
 class Motivo(models.Model):
     motivo = models.CharField(max_length=80)
 
@@ -110,7 +99,6 @@ class Motivo(models.Model):
 
     class Meta:
         db_table = 'motivo'
-
 
 class Nacionalidad(models.Model):
     nacionalidad = models.CharField(max_length=100)
@@ -121,20 +109,15 @@ class Nacionalidad(models.Model):
     class Meta:
         db_table = 'nacionalidad'
 
-
-
-
-
-
 class Prioridad(models.Model):
     prioridad = models.CharField(max_length=100)
+    cantidad_de_dias = models.IntegerField()
 
     def __str__(self):
         return self.prioridad
 
     class Meta:
         db_table = 'prioridad'
-
 
 class Redessociales(models.Model):
     red_social = models.CharField(max_length=80)
@@ -145,7 +128,6 @@ class Redessociales(models.Model):
     class Meta:
         db_table = 'redessociales'
 
-
 class Tiposolicitante(models.Model):
     tipo_solicitante = models.CharField(max_length=80)
 
@@ -154,7 +136,6 @@ class Tiposolicitante(models.Model):
 
     class Meta:
         db_table = 'tiposolicitante'
-
 
 class Unidadvecinal(models.Model):
     unidad_vecinal = models.CharField(max_length=100)
@@ -165,8 +146,6 @@ class Unidadvecinal(models.Model):
     class Meta:
         db_table = 'unidadvecinal'
 
-
-
 class Departamento(models.Model):
     departamento = models.CharField(max_length=100)
     id_direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
@@ -176,10 +155,6 @@ class Departamento(models.Model):
 
     class Meta:
         db_table = 'departamento'
-
-
-
-
 
 class Origen(models.Model):
     tipo = models.CharField(max_length=80)
@@ -193,7 +168,6 @@ class Origen(models.Model):
     class Meta:
         db_table = 'origen'
 
-
 class Telefono(models.Model):
     id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     telefono1 = models.IntegerField()
@@ -203,7 +177,6 @@ class Telefono(models.Model):
 
     class Meta:
         db_table = 'telefono'
-
 
 class Usuario(models.Model):
     rut = models.IntegerField()
@@ -227,8 +200,6 @@ class Usuario(models.Model):
         verbose_name = "Usuario"
         ordering = ['rut']
 
-
-
 class Incidente(models.Model):
     lista_calles_id = models.ForeignKey(Listacalles, on_delete=models.CASCADE)
     frente_numero = models.IntegerField()
@@ -240,8 +211,6 @@ class Incidente(models.Model):
         verbose_name_plural = "Incidentes"
         verbose_name = "Incidente"
         ordering = [id]
-
-
 
 class Imagenincidentes(models.Model):
     incidente_id = models.ForeignKey('Incidente', on_delete=models.CASCADE)
@@ -256,14 +225,6 @@ class Imagenincidentes(models.Model):
         verbose_name_plural = "Imagenes Incidentes"
         verbose_name = "Imagen Incidente"
         ordering = ['incidente_id']
-
-
-
-
-#------------------------------------------------------------
-
-#  Agregar a prioridad una columna con la cantidad dias 
-
 
 class Requerimientos(models.Model):
     id_origen = models.ForeignKey(Origen, on_delete=models.CASCADE)
@@ -286,8 +247,6 @@ class Requerimientos(models.Model):
         verbose_name_plural = "Requerimientos"
         verbose_name = "Requerimiento"
 
-
-
 class Cambiosestado(models.Model):
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     id_requerimiento = models.ForeignKey(Requerimientos, on_delete=models.CASCADE)
@@ -303,9 +262,6 @@ class Cambiosestado(models.Model):
         verbose_name = 'Cambio de estado'
         verbose_name_plural = 'Cambios de estado'
 
-
-         
-
 class Domicilio(models.Model):
     id_calle = models.ForeignKey(Listacalles, on_delete=models.CASCADE)
     numero = models.IntegerField()
@@ -319,6 +275,3 @@ class Domicilio(models.Model):
         db_table = 'domicilio'
         verbose_name_plural = "Domicilios"
         verbose_name = "Domicilio"
-        
-
-
