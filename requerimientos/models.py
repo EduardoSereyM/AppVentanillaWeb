@@ -164,11 +164,6 @@ class Unidadvecinal(models.Model):
         db_table = 'unidadvecinal'
 
 
-#------------------------------------------------------------
-
-
-
-
 
 class Departamento(models.Model):
     departamento = models.CharField(max_length=100)
@@ -179,3 +174,32 @@ class Departamento(models.Model):
 
     class Meta:
         db_table = 'departamento'
+
+
+#------------------------------------------------------------
+
+
+#  Falta Modelo Usuario
+""" class Telefono(models.Model):
+    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    telefono1 = models.IntegerField()
+
+    def __str__(self):  
+        return self.telefono1
+
+    class Meta:
+        db_table = 'telefono' """
+
+
+
+class Origen(models.Model):
+    tipo = models.CharField(max_length=80)
+    rrss_id = models.ForeignKey('Redessociales', on_delete=models.CASCADE)
+    datos_persona = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.tipo
+
+
+    class Meta:
+        db_table = 'origen'
