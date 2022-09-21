@@ -62,12 +62,18 @@ class Direccion(models.Model):
 class Estado(models.Model):
     estado = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.estado
+
     class Meta:
         db_table = 'estado'
 
 
 class Estadocivil(models.Model):
     estado_civil = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.estado_civil
 
     class Meta:
         db_table = 'estadocivil'
@@ -76,14 +82,19 @@ class Estadocivil(models.Model):
 class Genero(models.Model):
     genero = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.genero
+
     class Meta:
         db_table = 'genero'
 
-#------------------------------------------------------------
 
 
 class Listacalles(models.Model):
     calle = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.calle
 
     class Meta:
         db_table = 'listacalles'
@@ -92,6 +103,9 @@ class Listacalles(models.Model):
 class Motivo(models.Model):
     motivo = models.CharField(max_length=80)
 
+    def __str__(self):
+        return self.motivo
+
     class Meta:
         db_table = 'motivo'
 
@@ -99,5 +113,56 @@ class Motivo(models.Model):
 class Nacionalidad(models.Model):
     nacionalidad = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nacionalidad
+
     class Meta:
         db_table = 'nacionalidad'
+
+
+
+#------------------------------------------------------------
+
+
+
+class Prioridad(models.Model):
+    prioridad = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.prioridad
+
+    class Meta:
+        db_table = 'prioridad'
+
+
+class Redessociales(models.Model):
+    red_social = models.CharField(max_length=80)
+
+    def __str__(self):
+        return self.red_social
+
+    class Meta:
+        managed = False
+        db_table = 'redessociales'
+
+
+class Tiposolicitante(models.Model):
+    tipo_solicitante = models.CharField(max_length=80)
+
+    def __str__(self):
+        return self.tipo_solicitante
+
+    class Meta:
+        managed = False
+        db_table = 'tiposolicitante'
+
+
+class Unidadvecinal(models.Model):
+    unidad_vecinal = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.unidad_vecinal
+
+    class Meta:
+        managed = False
+        db_table = 'unidadvecinal'
