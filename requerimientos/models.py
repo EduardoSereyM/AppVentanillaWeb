@@ -1,4 +1,5 @@
 
+from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
@@ -39,6 +40,7 @@ class Detalleagrupacion(models.Model):
         db_table = 'detalleagrupacion'
         verbose_name_plural = "Detalle Agrupaciones (Nombre)"
         verbose_name = "Detalle Agrupacion  (Nombre)"
+        ordering = ['id']
 
 
 
@@ -50,6 +52,9 @@ class Detallecategoria(models.Model):
 
     class Meta:
         db_table = 'detallecategoria'
+        verbose_name_plural = "Detalle Categorias (Nombre)"
+        verbose_name = "Detalle Categoria (Nombre)"
+        ordering = ['detalle']
 
 class Direccion(models.Model):
     direccion = models.CharField(max_length=100)
@@ -59,6 +64,9 @@ class Direccion(models.Model):
 
     class Meta:
         db_table = 'direccion'
+        verbose_name_plural = "Direcciones"
+        verbose_name = "Direccion"
+        ordering = ['direccion']
 
 class Estado(models.Model):
     estado = models.CharField(max_length=100)
@@ -68,6 +76,9 @@ class Estado(models.Model):
 
     class Meta:
         db_table = 'estado'
+        verbose_name_plural = "Estados"
+        verbose_name = "Estado"
+        ordering = ['estado']
 
 class Estadocivil(models.Model):
     estado_civil = models.CharField(max_length=100)
@@ -77,6 +88,9 @@ class Estadocivil(models.Model):
 
     class Meta:
         db_table = 'estadocivil'
+        verbose_name_plural = "Estados Civiles"
+        verbose_name = "Estado Civil"
+        ordering = ['estado_civil']
 
 class Genero(models.Model):
     genero = models.CharField(max_length=100)
@@ -86,6 +100,9 @@ class Genero(models.Model):
 
     class Meta:
         db_table = 'genero'
+        verbose_name_plural = "Generos"
+        verbose_name = "Genero"
+        ordering = ['genero']
 
 class Listacalles(models.Model):
     calle = models.CharField(max_length=200)
@@ -104,6 +121,9 @@ class Motivo(models.Model):
 
     class Meta:
         db_table = 'motivo'
+        verbose_name_plural = "Motivos"
+        verbose_name = "Motivo"
+        ordering = ['motivo']
 
 class Nacionalidad(models.Model):
     nacionalidad = models.CharField(max_length=100)
@@ -113,6 +133,9 @@ class Nacionalidad(models.Model):
 
     class Meta:
         db_table = 'nacionalidad'
+        verbose_name_plural = "Nacionalidades"
+        verbose_name = "Nacionalidad"
+        ordering = ['nacionalidad']
 
 class Prioridad(models.Model):
     prioridad = models.CharField(max_length=100)
@@ -123,6 +146,9 @@ class Prioridad(models.Model):
 
     class Meta:
         db_table = 'prioridad'
+        verbose_name = "Prioridad"
+        verbose_name_plural = "Prioridades"
+        ordering = ['prioridad']
 
 class Redessociales(models.Model):
     red_social = models.CharField(max_length=80)
@@ -132,6 +158,9 @@ class Redessociales(models.Model):
 
     class Meta:
         db_table = 'redessociales'
+        verbose_name = "Red Social"
+        verbose_name_plural = "Redes Sociales"
+        ordering = ['red_social'] 
 
 class Tiposolicitante(models.Model):
     tipo_solicitante = models.CharField(max_length=80)
@@ -141,6 +170,9 @@ class Tiposolicitante(models.Model):
 
     class Meta:
         db_table = 'tiposolicitante'
+        verbose_name = "Tipo de Solicitante"
+        verbose_name_plural = "Tipos de Solicitantes"
+        ordering = ['tipo_solicitante']
 
 class Unidadvecinal(models.Model):
     unidad_vecinal = models.CharField(max_length=100)
@@ -150,6 +182,10 @@ class Unidadvecinal(models.Model):
 
     class Meta:
         db_table = 'unidadvecinal'
+        verbose_name = "Unidad Vecinal"
+        verbose_name_plural = "Unidades Vecinales"
+        ordering = ['unidad_vecinal']
+
 
 class Departamento(models.Model):
     departamento = models.CharField(max_length=100)
@@ -160,6 +196,9 @@ class Departamento(models.Model):
 
     class Meta:
         db_table = 'departamento'
+        verbose_name = "Departamento"
+        verbose_name_plural = "Departamentos"
+        ordering = ['departamento']
 
 class Origen(models.Model):
     tipo = models.CharField(max_length=80)
@@ -172,6 +211,9 @@ class Origen(models.Model):
 
     class Meta:
         db_table = 'origen'
+        verbose_name = "Origen"
+        verbose_name_plural = "Origenes"
+        ordering = ['tipo']
 
 class Telefono(models.Model):
     id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
@@ -182,6 +224,9 @@ class Telefono(models.Model):
 
     class Meta:
         db_table = 'telefono'
+        verbose_name = "Telefono"
+        verbose_name_plural = "Telefonos"
+        ordering = ['telefono1']
 
 class Usuario(models.Model):
     rut = models.IntegerField()
