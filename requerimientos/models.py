@@ -58,4 +58,26 @@ class Direccion(models.Model):
     class Meta:
         db_table = 'direccion'
 
+#------------------------------------------------------------
+
+class Estado(models.Model):
+    estado = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'estado'
+
+
+class Estadocivil(models.Model):
+    estado_civil = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'estadocivil'
+
+
+class Genero(models.Model):
+    genero = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'genero'
+
 
