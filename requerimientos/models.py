@@ -58,7 +58,6 @@ class Direccion(models.Model):
     class Meta:
         db_table = 'direccion'
 
-#------------------------------------------------------------
 
 class Estado(models.Model):
     estado = models.CharField(max_length=100)
@@ -80,4 +79,25 @@ class Genero(models.Model):
     class Meta:
         db_table = 'genero'
 
+#------------------------------------------------------------
 
+
+class Listacalles(models.Model):
+    calle = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'listacalles'
+
+
+class Motivo(models.Model):
+    motivo = models.CharField(max_length=80)
+
+    class Meta:
+        db_table = 'motivo'
+
+
+class Nacionalidad(models.Model):
+    nacionalidad = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'nacionalidad'
