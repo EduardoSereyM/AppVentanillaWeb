@@ -1,12 +1,10 @@
-
-from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
 
 
 class Agrupacion(models.Model):
-    agrupacion = models.CharField(max_length=100)
+    agrupacion = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.agrupacion
@@ -18,7 +16,7 @@ class Agrupacion(models.Model):
         ordering = ['id']
 
 class Categoria(models.Model):
-    categoria = models.CharField(max_length=200)
+    categoria = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.categoria
@@ -30,7 +28,7 @@ class Categoria(models.Model):
         ordering = ['categoria']
 
 class Detalleagrupacion(models.Model):
-    detalle = models.CharField(max_length=100)
+    detalle = models.CharField(max_length=100, unique=True)
     id_agrupacion = models.ForeignKey(Agrupacion, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
@@ -45,7 +43,7 @@ class Detalleagrupacion(models.Model):
 
 
 class Detallecategoria(models.Model):
-    detalle = models.CharField(max_length=150)
+    detalle = models.CharField(max_length=150, unique=True)
 
     def __str__(self):
         return self.detalle
@@ -57,7 +55,7 @@ class Detallecategoria(models.Model):
         ordering = ['detalle']
 
 class Direccion(models.Model):
-    direccion = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.direccion
@@ -69,7 +67,7 @@ class Direccion(models.Model):
         ordering = ['direccion']
 
 class Estado(models.Model):
-    estado = models.CharField(max_length=100)
+    estado = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.estado
@@ -81,7 +79,7 @@ class Estado(models.Model):
         ordering = ['estado']
 
 class Estadocivil(models.Model):
-    estado_civil = models.CharField(max_length=100)
+    estado_civil = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.estado_civil
@@ -93,7 +91,7 @@ class Estadocivil(models.Model):
         ordering = ['estado_civil']
 
 class Genero(models.Model):
-    genero = models.CharField(max_length=100)
+    genero = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.genero
@@ -105,7 +103,7 @@ class Genero(models.Model):
         ordering = ['genero']
 
 class Listacalles(models.Model):
-    calle = models.CharField(max_length=200)
+    calle = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.calle
@@ -114,7 +112,7 @@ class Listacalles(models.Model):
         db_table = 'listacalles'
 
 class Motivo(models.Model):
-    motivo = models.CharField(max_length=80)
+    motivo = models.CharField(max_length=80, unique=True)
 
     def __str__(self):
         return self.motivo
@@ -126,7 +124,7 @@ class Motivo(models.Model):
         ordering = ['motivo']
 
 class Nacionalidad(models.Model):
-    nacionalidad = models.CharField(max_length=100)
+    nacionalidad = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.nacionalidad
@@ -138,7 +136,7 @@ class Nacionalidad(models.Model):
         ordering = ['nacionalidad']
 
 class Prioridad(models.Model):
-    prioridad = models.CharField(max_length=100)
+    prioridad = models.CharField(max_length=100, unique=True)
     cantidad_de_dias = models.IntegerField()
 
     def __str__(self):
@@ -151,7 +149,7 @@ class Prioridad(models.Model):
         ordering = ['prioridad']
 
 class Redessociales(models.Model):
-    red_social = models.CharField(max_length=80)
+    red_social = models.CharField(max_length=80, unique=True)
 
     def __str__(self):
         return self.red_social
@@ -163,7 +161,7 @@ class Redessociales(models.Model):
         ordering = ['red_social'] 
 
 class Tiposolicitante(models.Model):
-    tipo_solicitante = models.CharField(max_length=80)
+    tipo_solicitante = models.CharField(max_length=80, unique=True)
 
     def __str__(self):
         return self.tipo_solicitante
@@ -175,7 +173,7 @@ class Tiposolicitante(models.Model):
         ordering = ['tipo_solicitante']
 
 class Unidadvecinal(models.Model):
-    unidad_vecinal = models.CharField(max_length=100)
+    unidad_vecinal = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.unidad_vecinal
@@ -188,7 +186,7 @@ class Unidadvecinal(models.Model):
 
 
 class Departamento(models.Model):
-    departamento = models.CharField(max_length=100)
+    departamento = models.CharField(max_length=100, unique=True)
     id_direccion = models.ForeignKey('Direccion', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -201,7 +199,7 @@ class Departamento(models.Model):
         ordering = ['departamento']
 
 class Origen(models.Model):
-    tipo = models.CharField(max_length=80)
+    tipo = models.CharField(max_length=80, unique=True)
     rrss_id = models.ForeignKey('Redessociales', on_delete=models.CASCADE)
     datos_persona = models.CharField(max_length=200)
 
@@ -229,17 +227,17 @@ class Telefono(models.Model):
         ordering = ['telefono1']
 
 class Usuario(models.Model):
-    rut = models.IntegerField()
-    digito_verif = models.CharField(max_length=2)
-    primer_nombre = models.CharField(max_length=100)
+    rut = models.IntegerField(null=False, unique=True)
+    digito_verif = models.CharField(max_length=2, null=False)
+    primer_nombre = models.CharField(max_length=100, null=False)
     segundo_nombre = models.CharField(max_length=100)
-    apellido_pat = models.CharField(max_length=100)
+    apellido_pat = models.CharField(max_length=100, null=False)
     apellido_mat = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField()
     id_genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
     id_estado_civil = models.ForeignKey(Estadocivil, on_delete=models.CASCADE)
     id_nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE)
-    correo = models.EmailField()
+    correo = models.EmailField(unique=True)
 
     def __str__(self):
         return self.rut+"-"+self.digito_verif
