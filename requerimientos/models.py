@@ -142,7 +142,6 @@ class Redessociales(models.Model):
         return self.red_social
 
     class Meta:
-        managed = False
         db_table = 'redessociales'
 
 
@@ -153,7 +152,6 @@ class Tiposolicitante(models.Model):
         return self.tipo_solicitante
 
     class Meta:
-        managed = False
         db_table = 'tiposolicitante'
 
 
@@ -164,5 +162,8 @@ class Unidadvecinal(models.Model):
         return self.unidad_vecinal
 
     class Meta:
-        managed = False
         db_table = 'unidadvecinal'
+
+
+
+        
