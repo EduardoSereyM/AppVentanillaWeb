@@ -14,7 +14,7 @@ class Agrupacion(models.Model):
         db_table = 'agrupacion'
         verbose_name_plural = "Agrupaciones"
         verbose_name = "Agrupacion"
-        ordering = ['agrupacion']
+        ordering = ['id']
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=200)
@@ -30,12 +30,17 @@ class Categoria(models.Model):
 
 class Detalleagrupacion(models.Model):
     detalle = models.CharField(max_length=100)
+    id_agrupacion = models.ForeignKey(Agrupacion, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.detalle
 
     class Meta:
         db_table = 'detalleagrupacion'
+        verbose_name_plural = "Detalle Agrupaciones (Nombre)"
+        verbose_name = "Detalle Agrupacion  (Nombre)"
+
+
 
 class Detallecategoria(models.Model):
     detalle = models.CharField(max_length=150)
@@ -267,7 +272,6 @@ class Domicilio(models.Model):
     numero = models.IntegerField()
     casa_dpto = models.CharField(max_length=6)
     id_unidad_vecinal = models.ForeignKey(Unidadvecinal, on_delete=models.CASCADE)
-    id_agrupacion = models.ForeignKey(Agrupacion, on_delete=models.CASCADE)
     id_detalle_agrupacion = models.ForeignKey(Detalleagrupacion, on_delete=models.CASCADE)
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
