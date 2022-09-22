@@ -28,7 +28,7 @@ class Categoria(models.Model):
         ordering = ['categoria']
 
 class Detalleagrupacion(models.Model):
-    detalle = models.CharField(max_length=100, unique=True)
+    detalle = models.CharField(max_length=100, unique=True, help_text="Nombre de la Agrupacion habitacional")
     id_agrupacion = models.ForeignKey(Agrupacion, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
@@ -88,10 +88,10 @@ class Estadocivil(models.Model):
         db_table = 'estadocivil'
         verbose_name_plural = "Estados Civiles"
         verbose_name = "Estado Civil"
-        ordering = ['estado_civil']
+        ordering = ['id']
 
 class Genero(models.Model):
-    genero = models.CharField(max_length=100, unique=True)
+    genero = models.CharField(max_length=100, unique=True, help_text="Genero de la persona")
 
     def __str__(self):
         return self.genero
@@ -110,6 +110,7 @@ class Listacalles(models.Model):
 
     class Meta:
         db_table = 'listacalles'
+        ordering = ['calle']
 
 class Motivo(models.Model):
     motivo = models.CharField(max_length=80, unique=True)
@@ -182,7 +183,7 @@ class Unidadvecinal(models.Model):
         db_table = 'unidadvecinal'
         verbose_name = "Unidad Vecinal"
         verbose_name_plural = "Unidades Vecinales"
-        ordering = ['unidad_vecinal']
+        ordering = ['id']
 
 
 class Departamento(models.Model):
@@ -228,19 +229,19 @@ class Telefono(models.Model):
 
 class Usuario(models.Model):
     rut = models.IntegerField(null=False, unique=True)
-    digito_verif = models.CharField(max_length=2, null=False)
-    primer_nombre = models.CharField(max_length=100, null=False)
-    segundo_nombre = models.CharField(max_length=100)
-    apellido_pat = models.CharField(max_length=100, null=False)
-    apellido_mat = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField()
+    digito_verif = models.CharField(max_length=2, null=False, help_text="Digito verificador del rut")
+    primer_nombre = models.CharField(max_length=100, null=False, help_text="Ingrese su primer nombre")
+    segundo_nombre = models.CharField(max_length=100,help_text="Ingrese su segundo nombre")
+    apellido_pat = models.CharField(max_length=100, null=False, help_text="Ingrese su apellido paterno")
+    apellido_mat = models.CharField(max_length=100, help_text="Ingrese su apellido materno")
+    fecha_nacimiento = models.DateField(help_text="Ingrese su fecha de nacimiento")
     id_genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
     id_estado_civil = models.ForeignKey(Estadocivil, on_delete=models.CASCADE)
     id_nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE)
     correo = models.EmailField(unique=True)
 
     def __str__(self):
-        return self.rut+"-"+self.digito_verif
+        return self.primer_nombre + " " + self.apellido_pat
 
     class Meta:
         db_table = 'usuario'
@@ -253,26 +254,28 @@ class Incidente(models.Model):
     frente_numero = models.IntegerField()
     block_casa_dpto = models.CharField(max_length=6)
   
+    def __str__(self):
+        return "Incidente frente a numero "+ str(self.frente_numero) 
 
     class Meta:
         db_table = 'incidente'
         verbose_name_plural = "Incidentes"
         verbose_name = "Incidente"
-        ordering = [id]
+
 
 class Imagenincidentes(models.Model):
     incidente_id = models.ForeignKey('Incidente', on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='incidentes')
     descripcion_fotografia = models.CharField(max_length=100)
+    imagen = models.ImageField()
 
     def __str__(self):
         return self.descripcion_fotografia
- 
+
     class Meta:
         db_table = 'imagenincidentes'
         verbose_name_plural = "Imagenes Incidentes"
         verbose_name = "Imagen Incidente"
-        ordering = ['incidente_id']
+
 
 class Requerimientos(models.Model):
     id_origen = models.ForeignKey(Origen, on_delete=models.CASCADE)
@@ -285,9 +288,6 @@ class Requerimientos(models.Model):
     motivo_negativa = models.CharField(max_length=200)
     id_tiposolicitante = models.ForeignKey(Tiposolicitante, on_delete=models.CASCADE)
     id_incidente = models.ForeignKey(Incidente, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.id_Motivo
 
 
     class Meta:
